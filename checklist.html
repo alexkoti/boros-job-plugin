@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<title>Plugin Checklist</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script language="javascript">
+/**
+ * ==================================================
+ * ATENÇÃO!!!!!!!!!!! SEMPRE PREENCHER A VARIÁVEL JOB
+ * ==================================================
+ * É ela quem diferencia um trabalho de outro no database local
+ * 
+ */
+var job = 'base';
+
+/**
+ * @link http://marxsoftware.blogspot.com.br/2011/01/html5-local-storage-web-storage.html
+ * 
+ */
+
+/*
+ * Indicate if this browser supports local storage.
+ */
+function html5StorageSupported(){
+	return ('localStorage' in window) && window['localStorage'] !== null;
+}
+
+/*
+ * Save favorite movies to local storage.
+ */
+function persistFavoriteMovies(){
+	if (html5StorageSupported()){
+		var $inputs = $('.save');
+		$inputs.each(function(){
+			var index = $(this).attr('name');
+			if( $(this).is('input:checkbox') ){
+				var val = $(this).is(':checked') ? 1 : 0;
+			}
+			else{
+				var val = $(this).val();
+			}
+			//console.log(val);
+			localStorage[index] = val;
+		});
+	}
+	else{
+		alert("Cannot save to local storage because it's not supported.");
+	}
+}
+
+/*
+ * Load favorite movies from local storage.
+ */
+function loadFavoriteMovies(){
+	var $itens = $('ol li');
+	// adicionar names à todos inputs
+	var i = 1;
+	$itens.each(function(){
+		$(this).prepend('<input type="checkbox" class="save" name="'+job+'_checklist_'+i+'" />&nbsp;');
+		$(this).wrapInner('<label />');
+		i++;
+	});
+	
+	if (html5StorageSupported()){
+		console.log(localStorage);
+		var $inputs = $('.save');
+		$inputs.each(function(){
+			var index = $(this).attr('name');
+			//console.log( index + ' : ' + localStorage[index] );
+			if( $(this).is('input:checkbox') ){
+				if( localStorage[index] == 1 ){
+					$(this).attr('checked', true);
+					$(this).parents('li').addClass('ok');
+				}
+				else{
+					$(this).attr('checked', false);
+				}
+			}
+			else{
+				$(this).val( localStorage[index] ) ;
+			}
+		});
+	}
+}
+
+function checkbox(){
+	$('input:checkbox').click(function(){
+		if( $(this).is(':checked') ){
+			$(this).parents('li').addClass('ok');
+		}
+		else{
+			$(this).parents('li').removeClass('ok');
+		}
+		persistFavoriteMovies();
+	});
+}
+
+jQuery(document).ready(function($){
+	loadFavoriteMovies();
+	checkbox();
+});
+</script>
+<style type="text/css">
+body {
+	color:#333;
+	font:14px arial;
+	padding:10px 10px 100px;
+}
+ol {
+	margin:10px;
+}
+ol li {
+	padding:5px;
+}
+ol li:hover {
+	background:#f1f1f1;
+}
+label {
+	cursor:pointer;
+}
+.type_need {
+	color:red;
+}
+.type_opti {
+	color:#fea600;
+}
+.ok {
+	opacity: 0.2;
+	text-decoration:line-through;
+}
+.file {
+	border:1px dashed #666;
+	padding:1px 4px;
+}
+</style>
+</head>
+
+<body>
+	
+	<h1>Plugin checklist</h1>
+	<p>Checklist com as configurações iniciais obrigatórias ao iniciar um novo job</p>
+	
+	<form name="form1">
+		<h2>Plugin</h2>
+		<ol>
+			<li class="type_need">Configurar constantes de DEBUG e <code>WP_PLUGIN_DIR</code>, <code>WP_PLUGIN_URL</code> e <code>PLUGINDIR</code></li>
+			<li class="type_need">Duplicar a pasta de plugin e theme e renomear com o nome do job e colar na pasta de plugins do novo job</li>
+			<li class="type_need">Adicionar o alias em <code>hosts</code> e <code>http-vhosts.conf</code></li>
+			<li class="type_need">Na pasta de plugins em <code>Boros</code>, adicionar uma pasta placeholder neste formato: <code>Z_JOB_{nome_do_job}</code>. Nela adicionar um um arquivo base com as tags de identificação do plugin, 100% igual à do plugin verdadeiro.</li>
+			<li class="type_need">Nesse arquivo base, adicionar a constante <code>{JOB}_URL</code>, o include do arquivo raiz do plugin na pasta do job</li>
+			<li class="type_opti">No arquivo base, adicionar a function placeholder de ativação(opcional e que aponta para a function real)</li>
+			<li class="type_need">Renomear o nome do arquivo raiz do plugin</li>
+			<li class="type_need">No arquivo raiz, adicionar as constantes <code>{JOB}_URL</code>, <code>{JOB}_DIR</code>, todos os includes e a function de ativação real</li>
+			<li class="type_need">Na function de ativação, adicionar os <code>options</code> com default obrigatório</li>
+			<li class="type_need">Configurar as páginas de admin <code>new BorosAdminPages()</code> em <code class="file">inc/admin_pages.php</code></li>
+			<li class="type_opti">Configurar link de opções do plugin em <code class="file">inc/admin_init.php</code> : padrão ativado</li>
+			<li class="type_need">Adicionar pasta de form_elements adicionais para o job em <code class="file">inc/admin_init.php</code></li>
+			<li class="type_opti">Configurar widgets de dashboard em <code class="file">inc/admin_dashboard.php</code></li>
+			<li class="type_need">Configurar o template padrão dos emails em <code>boros_email_base()</code>, <code class="file">inc/email.php</code></li>
+			<li class="type_need">Configurar os campos da newsletter em <code>borosnews_config()</code>, <code class="file">inc/frontend_forms.php</code> - por padrãoo vem ativado <strong>nome</strong> e <strong>email</strong></li>
+			<li class="type_need">Configurar a adição e remoção dos <code>meta_boxes</code> em <code class="file">inc/meta_boxes.php</code> - por padrão já substituído os boxes de thumbnail e categoria(auto-check em sub-categorias)</li>
+			<li class="type_need">Registrar os <code>post_types</code>, as respectivas colunas, helps, em <code class="file">inc/register_post_types.php</code></li>
+			<li class="type_need">Definir os callbacks de custom columns <code>do_action('boros_custom_column', $post_type, $post, $column_name)</code>, em <code class="file">inc/register_post_types.php</code></li>
+			<li class="type_need">Definir as colunas padrão de <code>posts</code>, <code>pages</code>, em <code class="file">inc/register_post_types.php</code></li>
+			<li class="type_need">Registrar as <code>taxonomias</code>, em <code class="file">inc/register_taxonomies.php</code></li>
+			<li class="type_need">Definir as colunas das taxonomias e os callbacks de custom columns, em <code class="file">inc/register_taxonomies.php</code></li>
+			<li class="type_opti">Mesclar taxonomias entre os <code>post_types</code>, em <code class="file">inc/register_taxonomies.php</code></li>
+			<li class="type_opti">Definir os <code>term_metas</code>, em <code class="file">inc/register_taxonomies.php</code></li>
+			<li class="type_opti">Configurar os shortcodes, em <code class="file">inc/shortcodes.php</code></li>
+			<li class="type_opti">Configurar o tinymce geral, em <code class="file">inc/tinymce.php</code></li>
+			<li class="type_need">Configurar os <code>custom_contact_methods</code>, em <code class="file">inc/user.php</code></li>
+			<li class="type_need">Configurar os <code>custom_user_metas</code>, em <code class="file">inc/user.php</code></li>
+			<li class="type_need">Configurar <code>widgets</code>, em <code class="file">inc/widgets.php</code></li>
+		</ol>
+		
+		<h2>Theme</h2>
+		<ol>
+			<li class="type_need">Configurar o screenshot do tema <code>screenshot.png</code></li>
+			<li class="type_need"><code class="file">mini_templates.php</code>: definir o <code>linked_excerpt_more()</code> e <code>new_excerpt_length()</code></li>
+			<li class="type_need"><code class="file">mini_templates.php</code>: configurar o <code>share_box()</code></li>
+			<li class="type_opti"><code class="file">frontend.php</code>: configurar apenas caso seja preciso filtrar a quantidade de posts por página em diferentes locais, redirects de páginas ou functions que não fazem output de html</li>
+			<li class="type_need"><code class="file">general_config.php</code>: configurações gerais, que são atreladas ao tema, mas afetam tanto o admin como o frontend, ex: <code>my_direct_insert_options()</code></li>
+			<li class="type_need"><code class="file">head.php</code>: as chamadas básicas de css e js estão prontas, serão necessários apenas os css/js adicionais, provavelmente de plugins jquery</li>
+			<li class="type_need"><code class="file">login.php</code>: será preciso apenas editar o <code>/css/login.css</code></li>
+			<li class="type_need"><code class="file">media.php</code>: adicionar suporte para post-thumbnails(<code>add_theme_support()</code>) aos <code>post_types</code></li>
+			<li class="type_need"><code class="file">media.php</code>: configurar o post-thumbnail(<code>set_post_thumbnail_size()</code>) aos <code>post_types</code></li>
+			<li class="type_need"><code class="file">media.php</code>: configurar o <code>content_width</code> do editor de texto padrão</li>
+			<li class="type_need"><code class="file">media.php</code>: adicionar os tamanhos personalizados de imagens e os nomes de exibição(<code>image_sizes_names()</code>)</li>
+			<li class="type_opti"><code class="file">media.php</code>: configurar as medidas dos tamanhos de midia padrão</li>
+			<li class="type_opti"><code class="file">media.php</code>: configurar o template de <code>caption</code>, <code>wp_caption</code> e <code>gallery_shortcode</code></li>
+			<li class="type_need"><code class="file">menus_sidebars_widgets.php</code>: registrar os menus disponíveis para edição <code>register_menus()</code></li>
+			<li class="type_need"><code class="file">menus_sidebars_widgets.php</code>: registrar os sidebars <code>register_sidebars_init()</code></li>
+			<li class="type_need"><code class="file">template_redirects.php</code>: dificilmente será editado, apenas caso precise de um redirecionamento muito específico de template</li>
+		</ol>
+		
+		<h2>Plugins padrão</h2>
+		<ol>
+			<li class="type_need">CMS Page Order - ordenar as pages, com opção de child/parent</li>
+			<li class="type_need">Quick Pages - adicionar rapidamente pages</li>
+			<li class="type_need">Regenerate Thumbnails</li>
+			<li class="type_opti">Email Login</li>
+			<li class="type_opti">Tubepress</li>
+		</ol>
+		<!-- <input type="button" value="SALVAR" onclick="persistFavoriteMovies()"> -->
+	</form>
+	
+</body>
+</html>
