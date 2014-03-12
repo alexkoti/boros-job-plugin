@@ -19,10 +19,9 @@
 add_filter( 'user_contactmethods', 'custom_contact_methods' );
 function custom_contact_methods( $contactmethods ){
 	// adicionar
-	$contactmethods['gtalk'] = 'Gtalk';
-	$contactmethods['msn'] = 'MSN';
-	$contactmethods['twitter'] = 'Twitter';
 	$contactmethods['facebook'] = 'Facebook';
+	$contactmethods['twitter']  = 'Twitter';
+	$contactmethods['hangouts'] = 'Hangouts';
 	$contactmethods['linkedin'] = 'LinkedIn';
 	
 	// remover
@@ -43,9 +42,27 @@ function custom_contact_methods( $contactmethods ){
  */
 add_action( 'admin_init', 'custom_user_metas' );
 function custom_user_metas(){
-	$user_id = boros_user_profile_page_user_id();
+	$user_meta_boxes = array();
 	
-	if( !current_user_can('subscriber') ){
+	if( current_user_can('edit_posts') ){
+		$user_meta_boxes['admin_user_options_box'] = array(
+			'id' => 'admin_user_options_box', 
+			'title' => 'Opções', 
+			//'desc' => '',
+			//'help' => '',
+			'itens' => array(
+				array(
+					'name' => 'show_debug',
+					'type' => 'checkbox',
+					'label' => 'Mostrar debug de rodapé',
+					'input_helper' => 'mostrar',
+				),
+			)
+		);
+	}
+	
+	/**
+	if( current_user_can('edit_posts') ){
 		$user_meta_boxes['author_photo_box'] = array(
 			'id' => 'author_photo_box', 
 			'title' => 'Foto', 
@@ -66,10 +83,7 @@ function custom_user_metas(){
 		);
 	}
 	
-	/**
-	 * Dados comuns, acessíveis para qualquer usuário
-	 * 
-	 */
+	$user_id = boros_user_profile_page_user_id();
 	$user_meta_boxes['user_meta_box'] = array(
 		'id' => 'user_meta_box', 
 		'title' => 'Dados extras', 
@@ -162,6 +176,7 @@ function custom_user_metas(){
 			),
 		)
 	);
+	/**/
 	
 	$custom_user_metas = new BorosUserMeta($user_meta_boxes);
 }

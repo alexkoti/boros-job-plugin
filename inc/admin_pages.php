@@ -57,7 +57,7 @@ function my_admin_pages_config(){
 			'page_title'	=> 'Opções do Site', 
 			'menu_title'	=> 'Opções do Site', 
 			'capability'	=> 'manage_options', 
-			'icon_url'		=> '',
+			'icon_url'		=> 'dashicons-admin-generic',
 		),
 		'section_networks' => array(
 			'page_title'	=> 'Redes Sociais', 
@@ -69,7 +69,7 @@ function my_admin_pages_config(){
 			'page_title'	=> 'Emails', 
 			'menu_title'	=> 'Emails', 
 			'capability'	=> 'manage_options', 
-			'icon_url'		=> '',
+			'icon_url'		=> 'dashicons-admin-generic',
 		),
 	);
 	return $admin_pages;
@@ -111,7 +111,7 @@ function remove_admin_bar_links() {
 	else $frontend_text = get_bloginfo('name');
 	$wp_admin_bar->add_menu(array(
 		'id' => 'site-name',
-		'title' => '<img src="' . BOROS_IMG . '/logo_admin.png" alt="" class="ab-icon" /><span class="ab-label">' . $frontend_text . '</span>',
+		'title' => $frontend_text,
 		'href' => home_url(),
 		'meta' => array(),
 	));
