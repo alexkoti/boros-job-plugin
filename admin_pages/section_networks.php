@@ -40,6 +40,46 @@ function section_networks(){
 	);
 	
 	$args[] = array(
+		'id' => 'twitter_api',
+		'title' => 'Chaves da API do Twitter',
+		'desc' => '',
+		'block' => 'section',
+		'section' => 'redes_sociais',
+		'itens' => array(
+			array(
+				'name' => 'home_feed_tt',
+				'type' => 'text',
+				'size' => 'tiny',
+				'label' => 'Quantidade status do Twitter',
+			),
+			array(
+				'name' => 'twitter_api_key_oauth_access_token',
+				'label' => 'Access token',
+				'type' => 'text',
+				'size' => 'medium',
+			),
+			array(
+				'name' => 'twitter_api_key_oauth_access_token_secret',
+				'label' => 'Access token secret',
+				'type' => 'text',
+				'size' => 'medium',
+			),
+			array(
+				'name' => 'twitter_api_key_consumer_key',
+				'label' => 'Consumer key',
+				'type' => 'text',
+				'size' => 'medium',
+			),
+			array(
+				'name' => 'twitter_api_key_consumer_secret',
+				'label' => 'Consumer Secret',
+				'type' => 'text',
+				'size' => 'medium',
+			),
+		),
+	);
+	
+	$args[] = array(
 		'id' => 'network_opengraph',
 		'title' => 'Opengraph e Share Options',
 		'desc' => 'Meta informações de compartilhamento[facebook e redes sociais]',
