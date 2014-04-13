@@ -66,6 +66,7 @@ function register_post_types(){
 		), 
 		'hierarchical' => false,
 		'has_archive' => 'noticias',
+		'menu_icon' => 'dashicons-calendar',
 		//'show_in_menu' => 'edit.php?post_type=artigo',
 		'supports' => array(
 			'title',
@@ -126,6 +127,7 @@ function register_post_types(){
 		), 
 		'hierarchical' => true,
 		'has_archive' => 'artigos',
+		'menu_icon' => 'dashicons-format-aside',
 		//'show_in_menu' => 'edit.php?post_type=artigo',
 		'supports' => array(
 			'title',
