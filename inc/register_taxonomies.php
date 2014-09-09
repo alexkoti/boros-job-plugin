@@ -15,7 +15,6 @@
  */
 //add_action('init', 'register_taxonomies');
 function register_taxonomies(){
-	return;
 	/**
 	MODELOS DE LABELS ================================
 	
@@ -106,7 +105,7 @@ function register_categories_to_custom_post_type(){
  * Configurar os termmetas das taxonomias
  * 
  */
-add_action('admin_init', 'my_add_taxonomy_meta');
+//add_action('admin_init', 'my_add_taxonomy_meta');
 function my_add_taxonomy_meta(){
 	$taxonomy_meta = array();
 	$taxonomy_meta['category'] = array(
@@ -170,9 +169,6 @@ function my_taxonomy_columns(){
  */
 //add_action( 'boros_custom_taxonomy_column', 'boros_custom_taxonomy_column', 10, 3 );
 function boros_custom_taxonomy_column( $taxonomy, $term_id, $column_name ){
-	//pre($taxonomy, 'taxonomy');
-	//pre($term_id, 'term_id');
-	//pre($column_name, 'column_name');
 	if( $column_name == 'term_color' ){
 		$colors = get_option('colors');
 		$term_color = get_metadata( 'term', $term_id, 'term_color', true );
