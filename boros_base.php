@@ -64,6 +64,7 @@ include_once( 'inc/frontend_forms.php');			// configuração dos forms de fronte
 include_once( 'inc/on_save.php' );					// functions para rodar no momento de salvamento de posts
 include_once( 'inc/email.php' );					// configuração de email
 include_once( 'inc/third_party.php' );				// configurações de integração com facebook/twitter/etc
+include_once( 'inc/security.php' );					// configurações e filtros de segurança
 include_once( 'inc/temp.php' );						// colocar aqui apenas functions de testes ou temporárias
 
 
