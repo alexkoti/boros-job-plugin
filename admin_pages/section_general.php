@@ -59,6 +59,26 @@ function section_general(){
 		),
 	);
 	$args[] = array(
+		'id' => 'site_options_recaptcha',
+		'title' => 'Recaptcha',
+		'desc' => 'Chaves para o serviço de captchas',
+		'block' => 'section',
+		'itens' => array(
+			array(
+				'name' => 'recaptcha_publickey',
+				'type' => 'text',
+				'label' => 'Public Key',
+				'size' => 'medium',
+			),
+			array(
+				'name' => 'recaptcha_privatekey',
+				'type' => 'text',
+				'label' => 'Private Key',
+				'size' => 'medium',
+			),
+		),
+	);
+	$args[] = array(
 		'id' => 'site_options_logged_in_only',
 		'title' => 'Acesso',
 		'block' => 'section',
