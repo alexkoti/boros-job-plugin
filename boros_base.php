@@ -9,6 +9,23 @@ Author URI: http://alexkoti.com
 License: GPL2
 */
 
+
+
+/**
+ * Verificar plugin ativo
+ * 
+ */
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+function dependent_plugin_notice() {
+	echo '<div class="updated"><p>O plugin dependente Boros não está ativo</p></div>';
+}
+if( !is_plugin_active('boros/boros.php') ) {
+	add_action( 'admin_notices', 'dependent_plugin_notice' );
+	return;
+}
+
+
+
 /**
  * CONSTANTES
  */
