@@ -7,16 +7,6 @@
  * 
  */
 
-/* ========================================================================== */
-/* ADD ACTIONS/FILTERS ====================================================== */
-/* ========================================================================== */
-//FIXOS
-add_filter( 'mce_css', 'edit_mce_css' );
-add_filter( 'tiny_mce_before_init', 'set_the_editor_class' );
-
-//CUSTOM
-//add_filter( 'mce_buttons', 'custom_editor_buttons' );
-//add_filter( 'tiny_mce_before_init', 'config_tinymce' );
 
 
 /* ========================================================================== */
@@ -26,10 +16,13 @@ add_filter( 'tiny_mce_before_init', 'set_the_editor_class' );
  * Adiciona estilos css ao editor de texto do admin
  * O css adicionado é baseado no WYMeditor, com auxílos visuais presentes apenas na tela de postagem.
  */
+add_filter( 'mce_css', 'edit_mce_css' );
 function edit_mce_css($mce_css){
 	$mce_css = get_bloginfo('template_url') . '/css/site.css, ' . $mce_css;
 	return $mce_css;
 }
+
+add_filter( 'tiny_mce_before_init', 'set_the_editor_class' );
 function set_the_editor_class( $init ){
 	global $post;
 	if( isset($post->post_type) )
@@ -42,6 +35,7 @@ function set_the_editor_class( $init ){
 /**
  * Configurar editor principal
  */
+//add_filter( 'mce_buttons', 'custom_editor_buttons' );
 function custom_editor_buttons( $buttons ){
 	/**
 	$buttons = array(
@@ -97,6 +91,7 @@ function custom_editor_buttons( $buttons ){
  * @link http://blog.estherswhite.net/2009/11/customizing-tinymce/
  *@link http://css-tricks.com/forums/discussion/12773/adding-styles-to-wordpress-tinymce/p1
  */
+//add_filter( 'tiny_mce_before_init', 'config_tinymce' );
 function config_tinymce($init){
 	$class = array(
 		'subtitulo' 		=> 'Subtítulo',
