@@ -226,6 +226,7 @@ function custom_admin_theme(){
 
 
 /**
+ * DEPRECATED!!! Não existe function substituta.
  * Filtrar o output da descrição de user ao editar com tinymce
  * 
  */
@@ -233,7 +234,7 @@ function custom_admin_theme(){
 function user_description_edit( $value, $user_id ){
 	return format_to_post($value );
 }
-add_filter( 'pre_user_description', 'user_description_presave', 20 );
+//add_filter( 'pre_user_description', 'user_description_presave', 20 );
 //remove_filter( 'pre_user_description', 'wp_filter_kses');
 function user_description_presave( $value ){
 	return format_to_post( $value);
