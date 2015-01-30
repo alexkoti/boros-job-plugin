@@ -7,44 +7,6 @@ function section_general(){
 		'block' => 'header',
 	);
 	$args[] = array(
-		'id' => 'siet_options_geral',
-		'title' => 'Geral',
-		'desc' => 'Informações gerais do site',
-		'block' => 'section',
-		'itens' => array(
-			array(
-				'name' => 'blogname',
-				'type' => 'text',
-				'size' => 'medium',
-				'std' => '',
-				'label' => 'Nome:'
-			),
-			array(
-				'name' => 'blogdescription',
-				'type' => 'text',
-				'size' => 'large',
-				'std' => '',
-				'label' => 'Descrição:'
-			),
-			array(
-				'name' => 'admin_email',
-				'type' => 'text',
-				'size' => 'small',
-				'std' => '',
-				'label' => 'Email de administração:',
-				'input_helper' => '<br />Este email é independente do usuário administrador',
-			),
-			array(
-				'name' => 'site_email',
-				'type' => 'text',
-				'size' => 'small',
-				'std' => '',
-				'label' => 'Email de contato:',
-				'input_helper' => '<br />Será usado como remetente dos emails de aviso de novos usuários, recuperação de senha e outros emails enviados pelo sistema.<br />Será também o destinatário do formulário de contato(caso seja configurado um).',
-			),
-		),
-	);
-	$args[] = array(
 		'id' => 'site_options_post_format',
 		'title' => 'Formatação',
 		'desc' => 'Opções padrão de elementos visuais',
