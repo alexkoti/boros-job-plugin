@@ -53,23 +53,39 @@ function my_admin_pages_config(){
 				)
 			),
 		),
-		'section_general' => array(
+		'tools.php' => array(
+			'type' => 'core',
+			'subpages' => array(
+				'section_dummy_content' => array(
+					'page_title'	=> 'Conteúdo de Testes', 
+					'menu_title'	=> 'Conteúdo de Testes', 
+					'capability'	=> 'manage_options', 
+				),
+			),
+		),
+		'section_content' => array(
 			'page_title'	=> 'Opções do Site', 
 			'menu_title'	=> 'Opções do Site', 
 			'capability'	=> 'manage_options', 
 			'icon_url'		=> 'dashicons-admin-generic',
+			'subpages' => array(
+				'section_general' => array(
+					'page_title'	=> 'Opções de Administração', 
+					'menu_title'	=> 'Opções de Administração', 
+					'capability'	=> 'manage_options', 
+				),
+				'section_emails' => array(
+					'page_title'	=> 'Emails', 
+					'menu_title'	=> 'Emails', 
+					'capability'	=> 'manage_options', 
+				),
+			),
 		),
 		'section_networks' => array(
 			'page_title'	=> 'Redes Sociais', 
 			'menu_title'	=> 'Redes Sociais', 
 			'capability'	=> 'manage_options', 
-			'icon_url'		=> '',
-		),
-		'section_emails' => array(
-			'page_title'	=> 'Emails', 
-			'menu_title'	=> 'Emails', 
-			'capability'	=> 'manage_options', 
-			'icon_url'		=> 'dashicons-admin-generic',
+			'icon_url'		=> 'dashicons-admin-share',
 		),
 	);
 	return $admin_pages;
