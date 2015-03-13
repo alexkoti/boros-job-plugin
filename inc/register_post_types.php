@@ -7,7 +7,7 @@
 
 /**
  * ==================================================
- * ADICIONAR SUPORTE Á POST FORMATS =================
+ * ADICIONAR SUPORTE A POST FORMATS =================
  * ==================================================
  * Isso irá permitir o tema usar post_formats para os 'posts' padrão do wordpress. Caso sej apreciso adicionar esse recurso a outros post_types, usar add_post_type_support()
  * Se for preciso adicionar post_formats a um post_type e ao mesmo tempo não dar suporte aos posts comnuns, é preciso primeiro habilitar os post_formats ao tema, usando

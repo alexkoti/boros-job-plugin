@@ -47,8 +47,6 @@ function register_taxonomies(){
 	 ==================================================
 	*/
 
-
-
 	/**
 	 * REGIÕES
 	 * 
@@ -248,6 +246,7 @@ function taxonomy_dropdown_filters( $post_type ){
 		}
 	}
 }
+
 /**
  * Create dropdown filter for taxonomy
  * 

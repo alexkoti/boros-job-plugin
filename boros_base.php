@@ -65,24 +65,24 @@ if( is_admin() ){
  * INCLUDES GERAL
  * 
  */
-include_once( 'inc/admin_init.php' );				// configurações iniciais de admin: link e registro de settings
-include_once( 'inc/debug.php' );					// configs de debug
-include_once( 'inc/admin_pages.php' ); 				// configurações para as páginas de admin
-include_once( 'inc/register_post_types.php' );		// adicionar custom post_types e configuração das listagens
-include_once( 'inc/register_taxonomies.php' );		// adicionar custom taxonomies
-include_once( 'inc/meta_boxes.php' );				// configurações dos metaboxes
-include_once( 'inc/user.php' );						// edição de painéis e configs de usuários
-include_once( 'inc/widgets.php' );					// widgets, configurar os widgets válidos
-include_once( 'inc/shortcodes.php');				// shortcodes
-include_once( 'inc/tinymce.php');					// tinymce do editor padrão
-include_once( 'inc/admin_ajax.php');				// ajax apenas para admin
-include_once( 'inc/frontend_ajax.php');				// ajax para o frontend(ver notas no arquivo)
-include_once( 'inc/frontend_forms.php');			// configuração dos forms de frontend
-include_once( 'inc/on_save.php' );					// functions para rodar no momento de salvamento de posts
-include_once( 'inc/email.php' );					// configuração de email
-include_once( 'inc/third_party.php' );				// configurações de integração com facebook/twitter/etc
-include_once( 'inc/security.php' );					// configurações e filtros de segurança
-include_once( 'inc/temp.php' );						// colocar aqui apenas functions de testes ou temporárias
+include_once( 'inc/admin_init.php' );          // configurações iniciais de admin: link e registro de settings
+include_once( 'inc/debug.php' );               // configs de debug
+include_once( 'inc/admin_pages.php' );         // configurações para as páginas de admin
+include_once( 'inc/register_post_types.php' ); // adicionar custom post_types e configuração das listagens
+include_once( 'inc/register_taxonomies.php' ); // adicionar custom taxonomies
+include_once( 'inc/meta_boxes.php' );          // configurações dos metaboxes
+include_once( 'inc/user.php' );                // edição de painéis e configs de usuários
+include_once( 'inc/widgets.php' );             // widgets, configurar os widgets válidos
+include_once( 'inc/shortcodes.php');           // shortcodes
+include_once( 'inc/tinymce.php');              // tinymce do editor padrão
+include_once( 'inc/admin_ajax.php');           // ajax apenas para admin
+include_once( 'inc/frontend_ajax.php');        // ajax para o frontend(ver notas no arquivo)
+include_once( 'inc/frontend_forms.php');       // configuração dos forms de frontend
+include_once( 'inc/on_save.php' );             // functions para rodar no momento de salvamento de posts
+include_once( 'inc/email.php' );               // configuração de email
+include_once( 'inc/third_party.php' );         // configurações de integração com facebook/twitter/etc
+include_once( 'inc/security.php' );            // configurações e filtros de segurança
+include_once( 'inc/temp.php' );                // colocar aqui apenas functions de testes ou temporárias
 
 
 /**

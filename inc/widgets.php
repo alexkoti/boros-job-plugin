@@ -8,7 +8,7 @@
  * controles, utilize o modelo comentado, adicionando uma capacidade 'edit_theme_options' ao tipo de usuário desejado.
  * 
  */
-add_action( 'widgets_init', 'remove_widgets' );
+//add_action( 'widgets_init', 'remove_widgets' );
 function remove_widgets(){
 	//unregister_widget( 'WP_Widget_Pages' );
 	//unregister_widget( 'WP_Widget_Calendar' );
@@ -42,7 +42,7 @@ function remove_widgets(){
  * 
  * 
  */
-add_action( 'widgets_init', 'add_custom_widgets' );
+//add_action( 'widgets_init', 'add_custom_widgets' );
 function add_custom_widgets(){
 	register_widget('free_box');
 }

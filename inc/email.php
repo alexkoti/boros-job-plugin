@@ -20,3 +20,4 @@ $BASE = <<<BASE
 BASE;
 return $BASE;
 }
+

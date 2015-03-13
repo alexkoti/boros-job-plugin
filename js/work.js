@@ -1,8 +1,7 @@
 /**
- * Scripts válidos apenas para o trabalho atual
+ * Javascript para o admin do projeto atual.
  * 
  */
-
 jQuery(document).ready(function($){
 	
 	

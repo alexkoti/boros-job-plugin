@@ -42,3 +42,4 @@ function borosnews_config(){
 	);
 	return $form_model;
 }
+

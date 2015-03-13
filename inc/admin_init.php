@@ -26,3 +26,5 @@ function custom_admin_head(){
 	wp_enqueue_script( 'custom_admin_scripts', BOROS_BASE_URL . 'js/work.js', array('jquery') );
 	wp_enqueue_style( 'custom_admin_styles', BOROS_BASE_URL . 'css/work.css' );
 }
+
+

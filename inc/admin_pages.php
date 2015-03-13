@@ -91,18 +91,22 @@ function my_admin_pages_config(){
 	return $admin_pages;
 }
 
+
+
 /**
  * ==================================================
  * REMOVER PÁGINAS DO ADMIN =========================
  * ==================================================
  * 
- * @link	http://devpress.com/blog/removing-menu-pages-from-the-wordpress-admin/
+ * @link http://devpress.com/blog/removing-menu-pages-from-the-wordpress-admin/
  */
 //add_action('admin_menu', 'remove_admin_pages');
 function remove_admin_pages(){
 	remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' );
 	remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=post_tag' );
 }
+
+
 
 /**
  * ==================================================
