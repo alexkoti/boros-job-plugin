@@ -21,9 +21,16 @@ function my_meta_boxes(){
 				'type' => 'special_image',
 				'layout' => 'block',
 				'options' => array(
-					'layout' => 'compact',
-					'width' => false,
+					'image_size' => 'large',
+					'layout' => 'grid',
+					'width' => 264,
 				),
+				// Exemplos:
+				//'options' => array(
+				//	'image_size' => 'large', // tamanho dos recortes reistrados
+				//	'layout' => 'grid',      // grid: imagem em cima, controles centralizados em baixo | row: controles flutuando ao lado da imagem
+				//	'width' => 264,          // 264 é a largura disponível dentro do metabox lateral
+				//),
 			),
 		)
 	);
@@ -134,6 +141,11 @@ function my_meta_boxes(){
 						'post_type' => 'post',
 					),
 				),
+			),
+			array(
+				'name' => 'color',
+				'type' => 'color_picker',
+				'label' => 'Escolha a cor personalizada',
 			),
 		)
 	);
