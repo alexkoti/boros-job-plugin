@@ -17,11 +17,11 @@ License: GPL2
  */
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 function dependent_plugin_notice() {
-	echo '<div class="updated"><p>O plugin dependente Boros não está ativo</p></div>';
+    echo '<div class="updated"><p>O plugin dependente Boros não está ativo</p></div>';
 }
 if( !is_plugin_active('boros/boros.php') ) {
-	add_action( 'admin_notices', 'dependent_plugin_notice' );
-	return;
+    add_action( 'admin_notices', 'dependent_plugin_notice' );
+    return;
 }
 
 
@@ -30,10 +30,9 @@ if( !is_plugin_active('boros/boros.php') ) {
  * CONSTANTES
  */
 define( 'BOROS_BASE_DIR', plugin_dir_path(__FILE__) );
-if( !defined('BOROS_BASE_URL') )
-	define( 'BOROS_BASE_URL', plugins_url( '/', __FILE__ ) );
-
-define( 'JQUERY_URL', get_bloginfo('template_url') . '/js/libs/jquery-1.9.1.min.js' );
+if( !defined('BOROS_BASE_URL') ){
+    define( 'BOROS_BASE_URL', plugins_url( '/', __FILE__ ) );
+}
 
 
 
@@ -46,8 +45,8 @@ define( 'JQUERY_URL', get_bloginfo('template_url') . '/js/libs/jquery-1.9.1.min.
  */
 add_filter( 'boros_extra_form_elements_folder', 'extra_form_elements_folder' );
 function extra_form_elements_folder( $folders ){
-	$folders[] = BOROS_BASE_DIR . 'form_elements';
-	return $folders;
+    $folders[] = BOROS_BASE_DIR . 'form-elements';
+    return $folders;
 }
 
 
@@ -58,8 +57,10 @@ function extra_form_elements_folder( $folders ){
  * 
  */
 if( is_admin() ){
-	include_once( 'inc/admin-dashboard.php' ); // configurações para o dashboard
+    include_once( 'inc/admin-dashboard.php' ); // configurações para o dashboard
 }
+
+
 
 /**
  * INCLUDES GERAL
@@ -85,17 +86,20 @@ include_once( 'inc/security.php' );      // configurações e filtros de seguran
 include_once( 'inc/temp.php' );          // colocar aqui apenas functions de testes ou temporárias
 
 
+
 /**
  * START OPTIONS
- * Opções requeridas, que devem ser setadas caso não existam no banco.
+ * Opções requeridas ao ativar o plugin
  * 
  */
 register_activation_hook( __FILE__, 'activate_boros_base' );
 function activate_boros_base(){
-	$options = array(
-		//'home_posts_per_page_box' => 3,
-	);
-	foreach( $options as $option => $value ){
-		add_option( $option, $value );
-	}
+    $options = array(
+        //'home_posts_per_page_box' => 3,
+    );
+    if( !empty($options) ){
+        foreach( $options as $option => $value ){
+            add_option( $option, $value );
+        }
+    }
 }

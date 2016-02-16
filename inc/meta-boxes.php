@@ -70,6 +70,21 @@ function my_meta_boxes(){
 		)
 	);
 	$meta_boxes[] = array(
+		'id' => 'extra_element_box', 
+		'title' => 'Extra Element', 
+		'post_type' => array('post'), 
+		'context' => 'normal', 
+		'priority' => 'default',
+		'itens' => array(
+			array(
+				'name' => 'extra_element',
+				'type' => 'extra_element',
+				'size' => 'full',
+				'label' => 'Extra!!!',
+			),
+		)
+	);
+	$meta_boxes[] = array(
 		'id' => 'links_box', 
 		'title' => 'Links úteis', 
 		'post_type' => array('post'), 

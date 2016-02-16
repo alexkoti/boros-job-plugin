@@ -18,6 +18,21 @@ function section_content(){
 				'label' => 'Imagem padrão para os posts',
 				'label_helper' => 'Será usado quando não existir a imagem de destaque do conteúdo',
 			),
+			array(
+				'name' => 'related_selected_contents',
+				'type' => 'search_content_list',
+				'label' => 'Selecionar os posts relacionados',
+				'options' => array(
+					'show_thumbnails' => false,
+					'show_excerpt' => true,
+					'query_search' => array(
+						'post_type' => 'post',
+					),
+					'query_selecteds' => array(
+						'post_type' => 'post',
+					),
+				),
+			),
 		),
 	);
 	return $args;
