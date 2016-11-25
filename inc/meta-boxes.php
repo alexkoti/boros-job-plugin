@@ -67,6 +67,12 @@ function my_meta_boxes(){
 				'label_helper' => 'Vídeos privados não poderão ser exibidos',
 				'input_helper' => '<br />Serviços suportados: YouTube, Vimeo, DailyMotion, blip.tv, Flickr(fotos e vídeo), Viddler, Hulu, Qik, Revision3, Scribd, Photobucket, PollDaddy',
 			),
+			array(
+				'name' => 'post_default_image',
+				'type' => 'special_image',
+				'label' => 'Imagem padrão para os posts',
+				'label_helper' => 'Será usado quando não existir a imagem de destaque do conteúdo',
+			),
 		)
 	);
 	$meta_boxes[] = array(
