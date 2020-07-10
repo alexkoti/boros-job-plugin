@@ -26,74 +26,112 @@
  */
 //add_action( 'init', 'register_post_types' );
 function register_post_types(){
+    
+    /**
+     * Inscrições
+	 * @2019
+     * 
+     */
+    $args = array(
+        'labels'              => boros_config_posttype_labels('Inscrição', 'Inscrições', 'fem', array('menu_name' => 'Inscrições')),
+        'description'         => 'Inscrições para o exame',
+        'public'              => false,
+        'publicly_queryable'  => false,
+        'exclude_from_search' => true,
+        'show_ui'             => true,
+        'show_in_nav_menus'   => false,
+        'query_var'           => true,
+        'rewrite'             => false,
+        'capability_type'     => 'post',
+        'map_meta_cap'        => true,
+        'hierarchical'        => true,
+        'has_archive'         => false,
+        'menu_icon'           => 'dashicons-groups',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+            'revisions',
+            'author',
+        )
+    ); 
+    register_post_type( 'inscricao' , $args );
+    $columns_config = array(
+        'post_type' => 'inscricao',
+        'columns' => array(
+            'cb'                                 => '<input type="checkbox" />',
+            'title'                              => 'Nome do candidato',
+            'function_jlpt_column_author'        => 'Usuário responsável',
+            'function_jlpt_column_boleto_status' => 'Status de pagamento',
+            'function_jlpt_column_photo'         => 'Foto',
+            'date'                               => 'Data',
+        )
+    );
+    new BorosPostTypeColumns( $columns_config );
+    
 	/**
 	 * Noticias
 	 * 
 	 */
-	$labels = array(
-		'name' => 'Notícias',
-		'singular_name' => 'Notícia',
-		'menu_name' => 'Noticias',
-		'add_new' => 'Nova Notícia',
-		'add_new_item' => 'Adicionar Notícia',
-		'edit_item' => 'Editar Notícia',
-		'new_item' => 'Nova Notícia',
-		'view_item' => 'Ver Notícia',
-		'search_items' => 'Buscar Notícia',
-		'not_found' =>  'Nenhum encontrada',
-		'not_found_in_trash' => 'Nenhum encontrada na lixeira',
-		'parent_item_colon' => ''
-	);
-	$args = array(
-		'labels' => $labels,
-		'description' => 'Notícias gerais',
-		'public' => true,
-			'publicly_queryable' => true,
-			'exclude_from_search' => false,
-			'show_ui' => true,
-			'show_in_nav_menus' => true,
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'capabilities' => array( 
-			'edit_post'              => 'edit_post',
-			'read_post'              => 'read_post',
-			'delete_post'            => 'delete_post',
-			'edit_posts'             => 'edit_posts',
-			'edit_others_posts'      => 'edit_others_posts',
-			'publish_posts'          => 'publish_posts',
-			'read_private_posts'     => 'read_private_posts',
-			'delete_posts'           => 'delete_posts',
-			'delete_private_posts'   => 'delete_private_posts',
-			'delete_published_posts' => 'delete_published_posts',
-			'delete_others_posts'    => 'delete_others_posts',
-			'edit_private_posts'     => 'edit_private_posts',
-			'edit_published_posts'   => 'edit_published_posts',
-			'create_posts'           => 'edit_posts',
-			'read'                   => 'read',
-		), 
-		'hierarchical' => false,
-		'has_archive' => 'noticias',
-		'menu_icon' => 'dashicons-calendar',
-		//'show_in_menu' => 'edit.php?post_type=artigo',
-		'supports' => array(
-			'title',
-			'editor',
-			'thumbnail',
-			'comments',
-		)
-	); 
-	register_post_type( 'noticia' , $args );
-	$columns_config = array(
-		'post_type' => 'noticia',
-		'columns' => array(
-			'cb' => '<input type="checkbox" />',
-			'title' => 'Título',
-			'terms_list_regiao' => 'Regiões',
-			'date' => 'Data',
-		)
-	);
-	new BorosPostTypeColumns( $columns_config );
+    $labels = boros_config_posttype_labels( 'Notícia', 'Notícias', 'fem', array('menu_name' => 'Notícias') );
+    $args = array(
+        'labels'              => $labels,
+        'description'         => 'Notícias diversas',
+        'public'              => true,
+        'hierarchical'        => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'show_ui'             => true,
+        //'show_in_menu'        => 'edit.php?post_type=artigo',
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => null,
+        'menu_icon'           => 'dashicons-editor-quote',
+        'capability_type'     => 'post',
+        'has_archive'         => 'noticias',
+        //'query_var'           => $post_slug,
+        //'rewrite' => array(
+        //    'slug'       => $post_slug,
+        //    'with_front' => '',
+        //),
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+            'revisions',
+        ),
+        'capabilities' => array( 
+            'edit_post'              => 'edit_post',
+            'read_post'              => 'read_post',
+            'delete_post'            => 'delete_post',
+            'edit_posts'             => 'edit_posts',
+            'edit_others_posts'      => 'edit_others_posts',
+            'publish_posts'          => 'publish_posts',
+            'read_private_posts'     => 'read_private_posts',
+            'delete_posts'           => 'delete_posts',
+            'delete_private_posts'   => 'delete_private_posts',
+            'delete_published_posts' => 'delete_published_posts',
+            'delete_others_posts'    => 'delete_others_posts',
+            'edit_private_posts'     => 'edit_private_posts',
+            'edit_published_posts'   => 'edit_published_posts',
+            'create_posts'           => 'edit_posts',
+            'read'                   => 'read',
+        ), 
+    ); 
+    register_post_type( 'noticia' , $args );
+    $columns_config = array(
+        'post_type' => 'noticia',
+        'columns' => array(
+            'cb'                => '<input type="checkbox" />',
+            'title'             => 'Título',
+            'terms_list_regiao' => 'Regiões',
+            'date'              => 'Data',
+            'thumb'             => 'Imagem',
+        )
+    );
+    new BorosPostTypeColumns( $columns_config );
 	
 	/**
 	 * ARTIGOS
