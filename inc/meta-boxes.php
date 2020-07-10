@@ -5,7 +5,8 @@
  * ==================================================
  * 
  */
-add_action( 'admin_init', 'my_meta_boxes' );
+//add_action( 'admin_init', 'my_meta_boxes' );
+add_action( 'add_meta_boxes', 'my_meta_boxes' ); // hook padrão para metaboxes, com $post acessível
 function my_meta_boxes(){
 	$meta_boxes = array();
 	$meta_boxes[] = array(
